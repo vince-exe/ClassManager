@@ -83,6 +83,7 @@ html {
     padding-bottom: 10px;
     font-weight: 600;
     letter-spacing: 2.5px;
+    cursor: pointer;
 }
 
 #login_btn:hover {
@@ -101,3 +102,5 @@ html {
     text-decoration: none;
     color: rgb(114, 61, 173);
 }
+
+/* Registration */
