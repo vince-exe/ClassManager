@@ -1,25 +1,23 @@
 const express = require('express')
 const cors = require('cors')
 const path = require('path')
+const bodyParser = require('body-parser')
 
 /* save the server configs */
 const serverConfigs = require('./config/configs.json')
 
 const app = express()
 
+app.use(bodyParser.json())
+
 app.use(cors())
 
 /* serve the folder directory */
-app.use(express.static(path.join(__dirname, 'public')))
+//app.use(express.static(path.join(__dirname, 'public')))
 
-/* redirect to the login router */
-app.get('/', (req, resp) => {
-    resp.redirect('login')
-})
-
-app.get('/login', (req, resp) => {
-    resp.send('Hello World')
-})
+/* routers */
+app.use('/login', require('./routers/loginRouter'))
+app.use('/registration', require('./routers/registrationRouter'))
 
 /* default router */
 app.all('*', (req, resp) => {
