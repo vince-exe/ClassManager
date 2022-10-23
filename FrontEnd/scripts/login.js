@@ -2,6 +2,7 @@ const emailBox = document.getElementById('email_input')
 emailBox.value = ""
 
 const pwdBox = document.getElementById('pwd_input')
+
 const loginBtn = document.getElementById('login_btn')
 
 const errorText = document.getElementById('error_text')

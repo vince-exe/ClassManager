@@ -1,6 +1,7 @@
-const usersDB = require('../data/users.json')
 const path = require('path')
 const fs = require('fs')
+
+const usersDB = require('../data/users.json')
 
 const handleRegistration = (req, resp) => {
     const credentials = {
@@ -11,7 +12,6 @@ const handleRegistration = (req, resp) => {
         pwd: req.body.pwd,
         bdayDate: req.body.bdayDate
     }
-    console.log(credentials)
     /* check for conflicts */
     if (usersDB.find(it => it.email == credentials.email)) {
         resp.sendStatus(409)

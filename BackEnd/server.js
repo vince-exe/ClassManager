@@ -4,7 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 
 /* save the server configs */
-const serverConfigs = require('./config/configs.json')
+const serverConfigs = require('./configs/configs.json')
 
 const app = express()
 

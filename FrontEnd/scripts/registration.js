@@ -1,6 +1,9 @@
 const firstNameInput = document.getElementById('first_name_input')
+
 const lastNameInput = document.getElementById('last_name_input')
+
 const emailInput = document.getElementById('email_input')
+
 const pwdInput = document.getElementById('pwd_input')
 
 const errorText = document.getElementById('error_text')
@@ -71,10 +74,15 @@ registerButton.addEventListener('click', () => {
             'lastName': lastNameInput.value,
             'email': emailInput.value,
             'pwd': pwdInput.value,
-            'bdayDate': date.getDate().toString() + '/' + date.getMonth().toString() + 1 + '/' + date.getFullYear().toString()
+            'bdayDate': date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getFullYear().toString(   )
         })
     }
     ).then(response => {
-        console.log(response.status)
+        switch(response.status) {
+            /* conflict ( email already in use ) */
+            case 409:
+                displayErrorText('There is already an account associated at this email')
+                break
+        }
     })
 })

@@ -30,5 +30,21 @@
         "email": "vince@gmail.com",
         "pwd": "password",
         "bdayDate": "23/91/2022"
+    },
+    {
+        "id": 5,
+        "firstName": "test4",
+        "lastName": "test4",
+        "email": "test4@gmail.com",
+        "pwd": "test1234",
+        "bdayDate": "23/10/2022"
+    },
+    {
+        "id": 6,
+        "firstName": "test5",
+        "lastName": "test5",
+        "email": "test5@gmail.com",
+        "pwd": "test5",
+        "bdayDate": "6/12/2026"
     }
 ]
