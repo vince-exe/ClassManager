@@ -22,5 +22,13 @@
         "email": "test3@gmail.com",
         "pwd": "test3",
         "bdayDate": "10/10/1999"
+    },
+    {
+        "id": 4,
+        "firstName": "vincenzo",
+        "lastName": "caliendo",
+        "email": "vince@gmail.com",
+        "pwd": "password",
+        "bdayDate": "23/91/2022"
     }
 ]

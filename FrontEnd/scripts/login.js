@@ -1,8 +1,13 @@
 const emailBox = document.getElementById('email_input')
+emailBox.value = ""
+
 const pwdBox = document.getElementById('pwd_input')
 const loginBtn = document.getElementById('login_btn')
 
-const DomainsArray = ['@gmail.com', '@outlook.it', '@virgilio.com']
+const errorText = document.getElementById('error_text')
+const errorTextDiv = document.getElementById('error_text_div')
+
+const domainsArray = ['@gmail.com', '@outlook.it', '@virgilio.it']
 
 function checkEmailDomain(email, array) {
     let check = false
@@ -16,15 +21,18 @@ function checkEmailDomain(email, array) {
     return check
 }
 
+function displayErrorText(message) {
+    errorText.style.display = 'block'
+    errorText.textContent = message
+    errorTextDiv.style.display = 'block'
+}
+
 window.addEventListener('keyup', (e) => {
     if(e.code === 'Enter') {
         loginBtn.click()
     }
 })
 
-emailBox.addEventListener('keydown', () => {
-    emailBox.style.color = 'rgba(245, 245, 245, 0.678)'
-})
 
 loginBtn.addEventListener('click', () => {
     const credentials = {
@@ -34,8 +42,8 @@ loginBtn.addEventListener('click', () => {
     if(credentials.pwd == "") {
         return
     }
-    if (!checkEmailDomain(credentials.email, DomainsArray)) {
-        emailBox.style.color = 'rgb(110, 13, 13)'
+    if (!checkEmailDomain(credentials.email, domainsArray)) {
+        displayErrorText('Please insert a valid email')
         return
     }
 
@@ -53,12 +61,10 @@ loginBtn.addEventListener('click', () => {
                 break
 
             case 401:
-                document.getElementById('error_text').style.display = 'block'
-                document.getElementById('error_text_div').style.display = 'block'
+                displayErrorText("There isn't an account associated with this email and password")
                 break
 
             default:
-                alert(toString(response.status))
                 break
         }
     })

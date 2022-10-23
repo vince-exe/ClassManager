@@ -28,7 +28,7 @@ html {
     width: 420px;
     background-color: #161616;
     margin: auto;
-    margin-top: 80px;
+    margin-top: 50px;
     height: 580px;
     gap: 30px;
 }
@@ -88,4 +88,21 @@ html {
 
 #register_btn:hover {
     border: 5px solid #0a0a0a;
+}
+
+#error_text_div {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 20px;
+    display: none;
+}
+ 
+#error_text {
+    display: none;
+    font-family: 'Roboto Slab', serif;
+    margin-top: 30px;
+    color: rgba(230, 11, 11, 0.486);
+    font-size: 15px;
+    letter-spacing: 0.5px;
 }
