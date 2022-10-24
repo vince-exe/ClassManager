@@ -79,6 +79,10 @@ registerButton.addEventListener('click', () => {
     }
     ).then(response => {
         switch(response.status) {
+            case 200:
+                window.location.replace('../view/homepage.html')
+                break
+            
             /* conflict ( email already in use ) */
             case 409:
                 displayErrorText('There is already an account associated at this email')

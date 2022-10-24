@@ -12,20 +12,10 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-/* serve the folder directory */
-//app.use(express.static(path.join(__dirname, 'public')))
-
 /* routers */
 app.use('/login', require('./routers/loginRouter'))
 app.use('/registration', require('./routers/registrationRouter'))
-
-/* default router */
-app.all('*', (req, resp) => {
-    resp.status(404)
-    /* send the files for the 404 */
-    resp.sendFile(path.join(__dirname, 'view', '404.html'))
-    resp.sendFile(path.join(__dirname, 'public/css', '404.css'))
-})
+app.use('/homepage', require('./routers/homePageRouter'))
 
 app.listen(serverConfigs.port, () => {
     console.log(`Server is listening on port ${serverConfigs.port}`)

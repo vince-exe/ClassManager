@@ -58,7 +58,7 @@ loginBtn.addEventListener('click', () => {
     ).then(response => {
         switch(response.status) {
             case 200:
-                alert('Successfully Logged In')
+                window.location.replace('../view/homepage.html')
                 break
 
             case 401:
@@ -66,6 +66,7 @@ loginBtn.addEventListener('click', () => {
                 break
 
             default:
+                displayErrorText("Application Error")
                 break
         }
     })
