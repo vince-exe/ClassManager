@@ -58,6 +58,7 @@ loginBtn.addEventListener('click', () => {
     ).then(response => {
         switch(response.status) {
             case 200:
+                document.cookie = `email=${credentials.email}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
                 window.location.replace('../view/homepage.html')
                 break
 
@@ -69,5 +70,9 @@ loginBtn.addEventListener('click', () => {
                 displayErrorText("Application Error")
                 break
         }
+    })
+    .catch(response => {
+        displayErrorText("The application can't reach the server...")
+        return
     })
 })
