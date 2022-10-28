@@ -20,31 +20,18 @@ html {
     cursor: pointer;
 }
 
-.login_box {
+.add-student-box {
     display: flex;
     align-items: center;
     justify-content: baseline;
     flex-direction: column;
-    width: 450px;
+    width: 420px;
     background-color: #161616;
     margin: auto;
-    margin-top: 80px;
-    height: 420px;
+    margin-top: 50px;
+    height: 580px;
+    gap: 30px;
     border-radius: 15px;
-}
-
-#title_login_box {
-    font-family: 'Roboto Slab', serif;
-    font-size: 30px;
-    letter-spacing: 5px;
-    color: rgb(114, 61, 173);
-    cursor: pointer;
-}
-
-@media(max-width: 526px) {
-    .login_box {
-        width: 90%;
-    }
 }
 
 .text_box {
@@ -58,20 +45,34 @@ html {
     color: rgba(245, 245, 245, 0.678)
 }
 
+#title_login_box {
+    font-family: 'Roboto Slab', serif;
+    font-size: 30px;
+    letter-spacing: 2.2px;
+    word-spacing: 7px;
+    color: rgb(114, 61, 173);
+    cursor: pointer;
+}
+
+#date_input {
+    height: 40px;
+    outline: none;
+    font-family: 'Roboto Slab', serif;
+    font-size: 22px;
+    background-color: #161616;
+    color: rgba(245, 245, 245, 0.678);
+    width: 200px;
+    text-align: center;
+    border: 4px solid #0a0a0a;
+    word-spacing: 2px;
+}
+
 .text_box:hover {
     border: 5px solid #0a0a0a;
 }
 
-#usr_input {
-    margin-top: 40px;
-}
-
-#pwd_input {
-    margin-top: 40px;
-}
-
-#login_btn {
-    margin-top: 40px;
+#add-btn {
+    margin-bottom: 30px;
     font-family: 'Roboto Slab', serif;
     font-size: 25px;
     outline: none;
@@ -87,21 +88,8 @@ html {
     cursor: pointer;
 }
 
-#login_btn:hover {
+#add-btn:hover {
     border: 5px solid #0a0a0a;
-}
-
-.basic_text {
-    font-family: 'Roboto Slab', serif;
-    margin-top: 34px;
-    font-size: 16px;
-    color: rgba(245, 245, 245, 0.678);
-    word-spacing: 2px;
-}
-
-.basic_text a {
-    text-decoration: none;
-    color: rgb(114, 61, 173);
 }
 
 #error_text_div {
@@ -111,12 +99,12 @@ html {
     margin-top: 20px;
     display: none;
 }
-
+ 
 #error_text {
     display: none;
     font-family: 'Roboto Slab', serif;
     margin-top: 30px;
-    color: rgba(230, 11, 11, 0.486);
+    color: rgba(255, 50, 43, 0.712);
     font-size: 15px;
     letter-spacing: 0.5px;
 }

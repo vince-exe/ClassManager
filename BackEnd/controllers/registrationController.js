@@ -5,13 +5,20 @@ const managersDB = require('../data/classManagers.json')
 
 const handleRegistration = (req, resp) => {
     const credentials = {
-        id: usersDB[usersDB.length - 1].id + 1,
+        id: 0,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
         pwd: req.body.pwd,
         bdayDate: req.body.bdayDate
     }
+    if(managersDB.length == 0) {
+        credentials.id = 1
+    }
+    else {
+        credentials.id = managersDB[managersDB.length - 1].id + 1
+    }
+
     /* check for conflicts */
     if (managersDB.find(it => it.email == credentials.email)) {
         resp.sendStatus(409)
@@ -19,7 +26,7 @@ const handleRegistration = (req, resp) => {
     }
 
     managersDB.push(credentials)
-    fs.writeFileSync(path.join(__dirname, '../data', 'users.json'), JSON.stringify(managersDB))
+    fs.writeFileSync(path.join(__dirname, '../data', 'classManagers.json'), JSON.stringify(managersDB))
 
     resp.sendStatus(200)
 }

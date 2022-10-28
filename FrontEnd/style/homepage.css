@@ -20,6 +20,7 @@ html {
     width: 100%;
     background-color: #111111;
     height: 120px;
+    min-width: 890px;
 }
 
 .info-box {
@@ -62,6 +63,7 @@ html {
     margin-top: 80px;
     font-family: 'Roboto Slab', serif;
     text-align: center;
+    min-width: 890px;
 }
 
 .table-row {
@@ -95,10 +97,63 @@ html {
 
 #no-students-div {
     font-family: 'Roboto Slab', serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     width: 100%;
     letter-spacing: 1px;
     color: rgb(114, 61, 173);
     cursor: pointer;
+}
+
+.input-container {
+    width: 110px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#id-input {
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+    font-size: 20px;
+    outline: none;
+    border: 3px solid #161616;
+    text-align: center;
+    height: 40px;
+    letter-spacing: 3px;
+    background-color: #0a0a0a;
+    color: rgba(245, 245, 245, 0.678);
+}
+
+.options-container {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: auto;
+    justify-content: center;
+}
+
+.button {
+    font-family: 'Roboto Slab', serif;
+    font-size: 25px;
+    outline: none;
+    border: 3px solid #161616;
+    text-align: center;
+    width: 160px;
+    background-color: #0a0a0a;
+    color: rgb(114, 61, 173);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    border: 4px solid #161616;
+}
+
+#id-input:hover {
+    border: 4px solid #161616;
 }

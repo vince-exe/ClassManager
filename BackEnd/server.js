@@ -16,6 +16,7 @@ app.use(cors())
 app.use('/login', require('./routers/loginRouter'))
 app.use('/registration', require('./routers/registrationRouter'))
 app.use('/homepage', require('./routers/homePageRouter'))
+app.use('/addStudent', require('./routers/addStudentRouter'))
 
 app.listen(serverConfigs.port, () => {
     console.log(`Server is listening on port ${serverConfigs.port}`)

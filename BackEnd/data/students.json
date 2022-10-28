@@ -2,19 +2,19 @@
     {
         "id": 1,
         "idManager": 1,
-        "firstName": "testStudent",
-        "lastName": "testStudent",
-        "email": "testStudent@gmail.com",
-        "pwd": "testStudent",
-        "bdayDate": "10/10/2022"
+        "firstName": "mario",
+        "lastName": "rossi",
+        "email": "mariorossi@gmail.com",
+        "pwd": "mario1234",
+        "bdayDate": "28/11/2025"
     },
     {
         "id": 2,
         "idManager": 1,
-        "firstName": "testStudent1",
-        "lastName": "testStudent1",
-        "email": "testStudent1@gmail.com",
-        "pwd": "testStudent1",
-        "bdayDate": "10/12/2022"
+        "firstName": "gianluca",
+        "lastName": "vacchi",
+        "email": "gianlucavacchi@gmail.com",
+        "pwd": "vacchi1111",
+        "bdayDate": "29/10/2022"
     }
 ]

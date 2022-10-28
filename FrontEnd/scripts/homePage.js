@@ -1,5 +1,77 @@
 const table = document.getElementById('table')
 
+const addButton = document.getElementById('add-button')
+const updateButton = document.getElementById('update-button')
+const deleteButton = document.getElementById('delete-button')
+
+const idInput = document.getElementById('id-input')
+
+const errorDiv = document.getElementById('no-students-div')
+const errorText = document.getElementById('no-students-text')
+
+var studentsArray = []
+
+function checkId(id) {
+    return !isNaN(id)
+}
+
+function isAStudent(id) {
+    let is = false
+    studentsArray.forEach(student => {
+        if (student.id == id) {
+            is = true
+            return
+        }
+    }) 
+    return is
+}
+
+updateButton.addEventListener('click', () => {
+    studentId = idInput.value
+    if (checkId(studentId) && studentId.length && isAStudent(studentId)) {
+        
+    }
+    else {
+        errorDiv.style.display = 'block'
+        errorText.style.display = 'block'
+        errorText.innerHTML = `Please insert a correct id`
+    }
+})
+
+addButton.addEventListener('click', () => {
+    window.location = '../view/addStudent.html'
+})
+
+function addStudent(id, fN, lN, em, pwd, bday) {
+    let row = table.insertRow(-1)
+    row.className = 'table-row-content'
+
+    let cellId = row.insertCell(0)
+    cellId.className = 'table-div'
+
+    let cellFirstName = row.insertCell(1)
+    cellFirstName.className = 'table-div'
+
+    let cellLastName = row.insertCell(2)
+    cellLastName.className = 'table-div'
+
+    let cellEmail = row.insertCell(3)
+    cellEmail.className = 'table-div'
+
+    let cellPwd = row.insertCell(4)
+    cellPwd.className = 'table-div'
+
+    let cellbDayDate = row.insertCell(5)
+    cellbDayDate.className = 'table-div'
+
+    cellId.innerHTML = id
+    cellFirstName.innerHTML = fN
+    cellLastName.innerHTML = lN
+    cellEmail.innerHTML = em
+    cellPwd.innerHTML = pwd
+    cellbDayDate.innerHTML = bday
+}
+
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -25,49 +97,41 @@ const fetchStudents = async (url) => {
         body: JSON.stringify({ 'email': getCookie("email") })
     })
 
-    if(!response.ok) {
-        console.log('bad request')
+    if (!response.ok) {
+        errorDiv.style.display = 'block'
+        errorText.style.display = 'block'
+        errorText.innerHTML = `Error while requesting to the server the students list`
+        table.style.display = 'none'
+        return undefined
     }
-    
+    /* return the array of students */
     return JSON.parse(await response.text()).studentsList
 }
 
 fetchStudents('http://localhost:3000/homepage/api/students').then(students => {
-    if(students.length == 0) {
-        console.log('ok')
-        document.getElementById('no-students-div').style.display = 'block'
-        document.getElementById('no-students-text').style.display = 'block'
+    if (students === undefined) {
+        return
+    }
+    /* save the students array */ 
+    studentsArray = students
+
+    if (students.length == 0) {
+        errorDiv.style.display = 'block'
+        errorText.style.display = 'block'
+        errorText.innerHTML = 'You have no students yet :('
         table.style.display = 'none'
         return
     }
 
     students.forEach(student => {
-        let row = table.insertRow(-1)
-        row.className = 'table-row-content'
-
-        let cellId = row.insertCell(0)
-        cellId.className = 'table-div'
-
-        let cellFirstName = row.insertCell(1)
-        cellFirstName.className = 'table-div'
-
-        let cellLastName = row.insertCell(2)
-        cellLastName.className = 'table-div'
-
-        let cellEmail = row.insertCell(3)
-        cellEmail.className = 'table-div'
-
-        let cellPwd = row.insertCell(4)
-        cellPwd.className = 'table-div'
-
-        let cellbDayDate = row.insertCell(5)
-        cellbDayDate.className = 'table-div'
-
-        cellId.innerHTML = student.id
-        cellFirstName.innerHTML = student.firstName
-        cellLastName.innerHTML = student.lastName
-        cellEmail.innerHTML = student.email
-        cellPwd.innerHTML = student.pwd
-        cellbDayDate.innerHTML = student.bdayDate
-    })
+        addStudent(
+            student.id,
+            student.firstName,
+            student.lastName,
+            student.email,
+            student.pwd,
+            student.bdayDate
+        )
+    }
+    )
 })

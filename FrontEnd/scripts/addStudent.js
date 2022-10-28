@@ -10,15 +10,24 @@ const errorText = document.getElementById('error_text')
 const errorTextDiv = document.getElementById('error_text_div')
 
 const dateInput = document.getElementById('date_input')
-const registerButton = document.getElementById('register_btn')
+const addButton = document.getElementById('add-btn')
 
 const domainsArray = ['@gmail.com', '@outlook.it', '@virgilio.it']
 
-function clearInputFields() {
-    firstNameInput.value = ""
-    lastNameInput.value = ""
-    emailInput.value = ""
-    pwdInput.value = ""
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 function displayErrorText(message) {
@@ -39,19 +48,17 @@ function checkEmailDomain(email, array) {
     return check
 }
 
-clearInputFields()
-
 /* assign the current date to the input */
 date = new Date()
 dateInput.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) + '-' + date.getDate().toString().padStart(2, 0)
 
 window.addEventListener('keydown', (key) => {
     if (key.code == 'Enter') {
-        registerButton.click()
+        addButton.click()
     }
 })
 
-registerButton.addEventListener('click', () => {
+addButton.addEventListener('click', () => {
     if (firstNameInput.value == "" || lastNameInput.value == "" || emailInput.value == "" || pwdInput.value == "") {
         displayErrorText('You have to fill all the input boxes')
         return
@@ -65,34 +72,28 @@ registerButton.addEventListener('click', () => {
         displayErrorText('Please insert a valid email')
         return
     }
-    fetch('http://localhost:3000/registration', {
+    fetch('http://localhost:3000/addStudent/api/add-student', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        },
+        }, 
         body: JSON.stringify({
             'firstName': firstNameInput.value,
             'lastName': lastNameInput.value,
             'email': emailInput.value,
+            'emailManager': getCookie("email"),
             'pwd': pwdInput.value,
-            'bdayDate': date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getFullYear().toString(   )
+            'bdayDate': date.getDate().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getFullYear().toString()
         })
-    }
-    ).then(response => {
-        switch(response.status) {
-            case 200:
-                document.cookie = `email=${emailInput.value}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
-                window.location.replace('../view/homepage.html')
-                break
-            
-            /* conflict ( email already in use ) */
-            case 409:
-                displayErrorText('There is already an account associated at this email')
-                break
-        }
     })
-    .catch(response => {
-        displayErrorText("The application can't reach the server...")
-        return
+    .then(response => {
+        if(response.status == 200) {
+            window.location.replace('../view/homepage.html')
+            return
+        }   
+        /* conflict */
+        if(response.status == 409) {
+            displayErrorText('There is already a student with this email')
+        }
     })
 })

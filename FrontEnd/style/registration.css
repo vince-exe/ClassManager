@@ -31,6 +31,7 @@ html {
     margin-top: 50px;
     height: 580px;
     gap: 30px;
+    border-radius: 15px;
 }
 
 .text_box {
