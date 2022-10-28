@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "idManager": 1,
+        "firstName": "testStudent",
+        "lastName": "testStudent",
+        "email": "testStudent@gmail.com",
+        "pwd": "testStudent",
+        "bdayDate": "10/10/2022"
+    },
+    {
+        "id": 2,
+        "idManager": 1,
+        "firstName": "testStudent1",
+        "lastName": "testStudent1",
+        "email": "testStudent1@gmail.com",
+        "pwd": "testStudent1",
+        "bdayDate": "10/12/2022"
+    }
+]

@@ -55,3 +55,33 @@ html {
     color: rgb(114, 61, 173);
     cursor: pointer;
 }
+
+#table {
+    width: 95%;
+    margin: auto;
+    margin-top: 80px;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+}
+
+.table-row {
+    color: rgb(114, 61, 173);
+    letter-spacing: 0.7px;
+    font-size: 20px;
+}
+
+.table-row-content {
+    color: rgb(177, 177, 177);
+    letter-spacing: 0.7px;
+    font-size: 18px;
+}
+
+.table-header {
+    height: 70px;
+    border: 4px solid #111111;
+}
+
+.table-div {
+    height: 50px;
+    border: 4px solid #111111;
+}

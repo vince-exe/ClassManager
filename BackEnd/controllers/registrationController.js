@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 
-const usersDB = require('../data/users.json')
+const managersDB = require('../data/classManagers.json')
 
 const handleRegistration = (req, resp) => {
     const credentials = {
@@ -13,13 +13,13 @@ const handleRegistration = (req, resp) => {
         bdayDate: req.body.bdayDate
     }
     /* check for conflicts */
-    if (usersDB.find(it => it.email == credentials.email)) {
+    if (managersDB.find(it => it.email == credentials.email)) {
         resp.sendStatus(409)
         return
     }
 
-    usersDB.push(credentials)
-    fs.writeFileSync(path.join(__dirname, '../data', 'users.json'), JSON.stringify(usersDB))
+    managersDB.push(credentials)
+    fs.writeFileSync(path.join(__dirname, '../data', 'users.json'), JSON.stringify(managersDB))
 
     resp.sendStatus(200)
 }

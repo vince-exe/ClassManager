@@ -1,4 +1,4 @@
-const usersDB = require('../data/users.json')
+const managersDB = require('../data/classManagers.json')
 
 const handleLogin = (req, resp) => {
     const credentials = {
@@ -6,7 +6,7 @@ const handleLogin = (req, resp) => {
         pwd: req.body.pwd
     }
     
-    let check = usersDB.find(it => it.email == credentials.email && it.pwd == credentials.pwd)
+    let check = managersDB.find(it => it.email == credentials.email && it.pwd == credentials.pwd)
     if (!check) {
         resp.sendStatus(401)
         return

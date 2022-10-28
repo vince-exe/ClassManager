@@ -1,9 +1,10 @@
-const usersDB = require('../data/users.json')
+const managersDB = require('../data/classManagers.json')
+const studentsDB = require('../data/students.json')
 
 const getInfoUser = (req, resp) => {
     const emailReq = req.body.email
 
-    const user = usersDB.find(user => user.email == emailReq)
+    const user = managersDB.find(user => user.email == emailReq)
     if (!user) {
         resp.status(404).json({ message: 'no user found' })
         return
@@ -19,4 +20,14 @@ const getInfoUser = (req, resp) => {
     })
 }
 
-module.exports = { getInfoUser }
+const getStudents = (req, resp) => {
+    const emailReq = req.body.email
+
+    const manager = managersDB.find(manager => manager.email == emailReq)
+    const students = studentsDB.filter(student => student.idManager == manager.id)
+
+    console.log(students)
+    resp.status(200).json({studentsList: students})
+}
+
+module.exports = { getInfoUser, getStudents}
