@@ -26,7 +26,6 @@ const getStudents = (req, resp) => {
     const manager = managersDB.find(manager => manager.email == emailReq)
     const students = studentsDB.filter(student => student.idManager == manager.id)
 
-    console.log(students)
     resp.status(200).json({studentsList: students})
 }
 
