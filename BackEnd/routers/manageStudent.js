@@ -9,4 +9,6 @@ router.post('/api/updt-student', manageStudentController.updtStudent)
 
 router.post('/api/get-student', manageStudentController.getStudent)
 
+router.post('/api/del-student', manageStudentController.delStudent)
+
 module.exports = router

@@ -9,15 +9,6 @@
         "bdayDate": "24/11/2025"
     },
     {
-        "id": 2,
-        "idManager": 1,
-        "firstName": "rosanno",
-        "lastName": "vacchi",
-        "email": "gianlucavacchi@gmail.com",
-        "pwd": "vacchi1111",
-        "bdayDate": "28/10/2022"
-    },
-    {
         "id": 3,
         "idManager": 2,
         "firstName": "giuseppe",

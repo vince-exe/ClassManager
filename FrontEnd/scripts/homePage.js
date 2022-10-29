@@ -24,20 +24,20 @@ updateButton.addEventListener('click', () => {
             },
             body: JSON.stringify({ 'id': studentId, 'emailManager': getCookie('email') })
         })
-        .then(response => {
-            if(response.status == 401) {
-                errorDiv.style.display = 'block'
-                errorText.style.display = 'block'
-                errorText.innerHTML = `Please insert a correct id`
-                return
-            }
-            /* create a cookie with the user informations */
-            response.text().then(value => {
-                student = JSON.parse(value)
-                document.cookie = `updtUser=${JSON.stringify(student)}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
-                window.location = '../view/updtStudent.html'
+            .then(response => {
+                if (response.status == 401) {
+                    errorDiv.style.display = 'block'
+                    errorText.style.display = 'block'
+                    errorText.innerHTML = `Please insert a correct id`
+                    return
+                }
+                /* create a cookie with the user informations */
+                response.text().then(value => {
+                    student = JSON.parse(value)
+                    document.cookie = `updtUser=${JSON.stringify(student)}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
+                    window.location = '../view/updtStudent.html'
+                })
             })
-        })
     }
     else {
         errorDiv.style.display = 'block'
@@ -48,6 +48,40 @@ updateButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
     window.location = '../view/addStudent.html'
+})
+
+deleteButton.addEventListener('click', () => {
+    studentId = idInput.value
+    if (isValidId(studentId) && studentId.length) {
+        fetch('http://localhost:3000/manageStudent/api/get-student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'id': studentId, 'emailManager': getCookie('email') })
+        })
+            .then(response => {
+                if (response.status == 401) {
+                    errorDiv.style.display = 'block'
+                    errorText.style.display = 'block'
+                    errorText.innerHTML = `Please insert a correct id`
+                    return
+                }
+                /* request to delete the student */
+                fetch('http://localhost:3000/manageStudent/api/del-student', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 'id': studentId, 'emailManager': getCookie('email') })
+                })
+                    .then(response => {
+                        if (response.status == 200) {
+                            return
+                        }
+                    })
+            })
+    }
 })
 
 function addStudent(id, fN, lN, em, pwd, bday) {
@@ -128,6 +162,7 @@ fetchStudents('http://localhost:3000/homepage/api/students').then(students => {
         table.style.display = 'none'
         return
     }
+    console.log('ciao')
     students.forEach(student => {
         addStudent(
             student.id,
