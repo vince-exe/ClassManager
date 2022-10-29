@@ -9,26 +9,13 @@ const idInput = document.getElementById('id-input')
 const errorDiv = document.getElementById('no-students-div')
 const errorText = document.getElementById('no-students-text')
 
-var studentsArray = []
-
-function checkId(id) {
+function isValidId(id) {
     return !isNaN(id)
-}
-
-function isAStudent(id) {
-    let is = false
-    studentsArray.forEach(student => {
-        if (student.id == id) {
-            is = true
-            return
-        }
-    }) 
-    return is
 }
 
 updateButton.addEventListener('click', () => {
     studentId = idInput.value
-    if (checkId(studentId) && studentId.length && isAStudent(studentId)) {
+    if (isValidId(studentId) && studentId.length) {
         
     }
     else {
@@ -112,8 +99,6 @@ fetchStudents('http://localhost:3000/homepage/api/students').then(students => {
     if (students === undefined) {
         return
     }
-    /* save the students array */ 
-    studentsArray = students
 
     if (students.length == 0) {
         errorDiv.style.display = 'block'

@@ -38,4 +38,23 @@ const addStudent = (req, resp) => {
     resp.sendStatus(200)
 }
 
-module.exports = { addStudent }
+const getStudent = (req, resp) => {
+    student = studentsDB.find(student => student.id == req.body.id)
+    if(!student) {
+        resp.sendStatus(401)
+        return
+    }
+    resp.status(200).json(
+        {
+            id: student.id,
+            idManager: student.idManager,
+            firstName: student.firstName,
+            lastName: student.lastName,
+            email: student.email,
+            pwd: student.pwd,
+            bdayDate: student.bdayDate
+        }
+    )
+}
+
+module.exports = { addStudent, getStudent }

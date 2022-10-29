@@ -72,7 +72,7 @@ addButton.addEventListener('click', () => {
         displayErrorText('Please insert a valid email')
         return
     }
-    fetch('http://localhost:3000/addStudent/api/add-student', {
+    fetch('http://localhost:3000/manageStudent/api/add-student', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
