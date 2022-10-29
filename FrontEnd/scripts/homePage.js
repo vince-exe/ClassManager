@@ -16,7 +16,26 @@ function isValidId(id) {
 updateButton.addEventListener('click', () => {
     studentId = idInput.value
     if (isValidId(studentId) && studentId.length) {
-        
+        fetch('http://localhost:3000/manageStudent/api/get-student', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'id': studentId })
+        })
+        .then(response => {
+            if(response.status == 401) {
+                errorDiv.style.display = 'block'
+                errorText.style.display = 'block'
+                errorText.innerHTML = `Please insert a correct id`
+                return
+            }
+            /* create a cookie with the user informations */
+            response.text().then(value => {
+                student = JSON.parse(value)
+                document.cookie = `updtUser=${JSON.stringify(student)}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
+            })
+        })
     }
     else {
         errorDiv.style.display = 'block'
