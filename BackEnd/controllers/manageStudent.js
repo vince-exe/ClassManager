@@ -57,4 +57,28 @@ const getStudent = (req, resp) => {
     )
 }
 
-module.exports = { addStudent, getStudent }
+const updtStudent = (req, resp) => {
+    const newCredentials = {
+        id: req.body.id,
+        idManager: req.body.idManager,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        pwd: req.body.pwd,
+        bdayDate: req.body.bdayDate
+    }
+    studentsDB.forEach(student => {
+        if(student.id == newCredentials.id) {
+            student.firstName = newCredentials.firstName
+            student.lastName = newCredentials.lastName,
+            student.email = newCredentials.email,
+            student.pwd = newCredentials.pwd,
+            student.bdayDate = newCredentials.bdayDate
+        }
+    })
+
+    fs.writeFileSync(path.join(__dirname, '../data', 'students.json'), JSON.stringify(studentsDB))
+    resp.sendStatus(200)
+}
+
+module.exports = { addStudent, getStudent, updtStudent }

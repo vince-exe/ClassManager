@@ -5,6 +5,7 @@ const updateButton = document.getElementById('update-button')
 const deleteButton = document.getElementById('delete-button')
 
 const idInput = document.getElementById('id-input')
+idInput.value = ""
 
 const errorDiv = document.getElementById('no-students-div')
 const errorText = document.getElementById('no-students-text')
@@ -34,6 +35,7 @@ updateButton.addEventListener('click', () => {
             response.text().then(value => {
                 student = JSON.parse(value)
                 document.cookie = `updtUser=${JSON.stringify(student)}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
+                window.location = '../view/updtStudent.html'
             })
         })
     }
@@ -126,7 +128,6 @@ fetchStudents('http://localhost:3000/homepage/api/students').then(students => {
         table.style.display = 'none'
         return
     }
-
     students.forEach(student => {
         addStudent(
             student.id,
