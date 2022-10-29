@@ -39,11 +39,13 @@ const addStudent = (req, resp) => {
 }
 
 const getStudent = (req, resp) => {
-    student = studentsDB.find(student => student.id == req.body.id)
+    const manager = managersDB.find(it => it.email == req.body.emailManager)
+    student = studentsDB.find(student => student.id == req.body.id && student.idManager == manager.id)
     if(!student) {
         resp.sendStatus(401)
         return
     }
+    
     resp.status(200).json(
         {
             id: student.id,
@@ -76,7 +78,8 @@ const updtStudent = (req, resp) => {
             student.bdayDate = newCredentials.bdayDate
         }
     })
-
+    studentsDB.sort((a, b) => a.id - b.id)
+    
     fs.writeFileSync(path.join(__dirname, '../data', 'students.json'), JSON.stringify(studentsDB))
     resp.sendStatus(200)
 }

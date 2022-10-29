@@ -22,7 +22,7 @@ updateButton.addEventListener('click', () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ 'id': studentId })
+            body: JSON.stringify({ 'id': studentId, 'emailManager': getCookie('email') })
         })
         .then(response => {
             if(response.status == 401) {

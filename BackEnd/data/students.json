@@ -1,20 +1,38 @@
 [
     {
-        "id": 2,
-        "idManager": 1,
-        "firstName": "gianluca",
-        "lastName": "vacchi",
-        "email": "gianlucavacchi@gmail.com",
-        "pwd": "vacchi1111",
-        "bdayDate": "29/10/2022"
-    },
-    {
         "id": 1,
         "idManager": 1,
-        "firstName": "vasco",
+        "firstName": "mario",
         "lastName": "rossi",
         "email": "mariorossi@gmail.com",
         "pwd": "mario1234",
-        "bdayDate": "25/11/2025"
+        "bdayDate": "24/11/2025"
+    },
+    {
+        "id": 2,
+        "idManager": 1,
+        "firstName": "rosanno",
+        "lastName": "vacchi",
+        "email": "gianlucavacchi@gmail.com",
+        "pwd": "vacchi1111",
+        "bdayDate": "28/10/2022"
+    },
+    {
+        "id": 3,
+        "idManager": 2,
+        "firstName": "giuseppe",
+        "lastName": "vacca",
+        "email": "giuse@gmail.com",
+        "pwd": "giuse88",
+        "bdayDate": "29/9/2023"
+    },
+    {
+        "id": 4,
+        "idManager": 2,
+        "firstName": "alessandro",
+        "lastName": "bonucci",
+        "email": "ale@gmail.com",
+        "pwd": "aleale",
+        "bdayDate": "29/10/2022"
     }
 ]
