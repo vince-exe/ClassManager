@@ -82,7 +82,7 @@ registerButton.addEventListener('click', () => {
         switch(response.status) {
             case 200:
                 document.cookie = `email=${emailInput.value}; expires=Thu, 18 Dec 2024 12:00:00 UTC; path=/`
-                window.location.replace('../view/homepage.html')
+                window.location = '../view/homepage.html'
                 break
             
             /* conflict ( email already in use ) */
